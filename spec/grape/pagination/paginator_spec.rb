@@ -16,5 +16,13 @@ describe Grape::Pagination::Paginator do
       expect(collection).to receive(:paginate).with(page: 1, per_page: 30)
       paginator.paginate
     end
+
+    it 'paginates with custom block' do
+      expect(collection).to receive(:page).with(1).and_return(collection)
+      expect(collection).to receive(:per).with(30)
+      paginator.paginate do |col, params|
+        col.page(params[:page]).per(params[:per_page])
+      end
+    end
   end
 end
