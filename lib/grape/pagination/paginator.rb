@@ -31,6 +31,8 @@ module Grape::Pagination
     def paginate_collection(collection, params, &block)
       if block_given?
         block.call(collection, params)
+      elsif configuration.pagination_block
+        configuration.pagination_block.call(collection, params)
       else
         collection.paginate(params)
       end
