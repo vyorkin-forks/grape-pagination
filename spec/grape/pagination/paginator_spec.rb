@@ -8,12 +8,12 @@ describe Grape::Pagination::Paginator do
 
   describe '.paginate' do
     it 'sets the headers' do
-      endpoint.should_receive(:header).with('Link', '<https://localhost:5000/api/v1/tweets?page=2&per_page=30>; rel="next"')
+      expect(endpoint).to receive(:header).with('Link', '<https://localhost:5000/api/v1/tweets?page=2&per_page=30>; rel="next"')
       paginator.paginate
     end
 
     it 'paginates the collection' do
-      collection.should_receive(:paginate).with(page: 1, per_page: 30)
+      expect(collection).to receive(:paginate).with(page: 1, per_page: 30)
       paginator.paginate
     end
   end
