@@ -2,7 +2,6 @@ module Grape::Pagination
   class Paginator
     extend Forwardable
 
-    TOTAL_HEADER = 'X-Total'.freeze
     LINK_HEADER  = 'Link'.freeze
 
     attr_reader :endpoint
@@ -20,8 +19,10 @@ module Grape::Pagination
     end
 
     def paginate(&block)
-      header LINK_HEADER, LinkHeader.new(request.url, page_params).to_rfc5988
-      paginate_collection(collection, page_params, &block)
+      paginated = paginate_collection(collection, page_params, &block)
+      link = LinkHeader.new(request.url, paginated, page_params)
+      header LINK_HEADER, link.to_rfc5988
+      paginated
     end
 
   private
@@ -31,8 +32,8 @@ module Grape::Pagination
     def paginate_collection(collection, params, &block)
       if block_given?
         block.call(collection, params)
-      elsif configuration.pagination_block
-        configuration.pagination_block.call(collection, params)
+      elsif configuration.pagination_proc
+        configuration.pagination_proc.call(collection, params)
       else
         collection.paginate(params)
       end
