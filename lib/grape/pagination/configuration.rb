@@ -9,10 +9,17 @@ module Grape::Pagination
 
     def initialize
       @included_links  = DEFAULT_LINKS.dup
-      @first_page_proc = lambda { |col| 1 unless col.first_page? }
-      @prev_page_proc  = lambda { |col| col.prev_page }
+      @first_page_proc = lambda { |col| 1 if col.current_page > 1 }
+      @prev_page_proc  = lambda { |col| col.try(:previous_page) or col.prev_page }
       @next_page_proc  = lambda { |col| col.next_page }
-      @last_page_proc  = lambda { |col| col.total_pages unless col.last_page? }
+      @last_page_proc  = lambda { |col| col.total_pages if col.current_page < col.total_pages }
+      @pagination_proc = lambda do |col, params|
+        if col.respond_to? :paginate
+          col.paginate(params)
+        elsif col.respond_to? :page
+          col.page(params[:page]).per(params[:per_page])
+        end
+      end
     end
 
     def paginate_with(&block)

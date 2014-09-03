@@ -17,6 +17,7 @@ class MockRelation < Array
     PaginatedRelation.new(slice(offset, per_page),
                           options[:page], total_pages)
   end
+  alias_method :custom_paginate, :paginate
 
   def page(val)
     @page = val

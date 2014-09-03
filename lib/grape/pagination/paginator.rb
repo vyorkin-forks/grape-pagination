@@ -35,7 +35,7 @@ module Grape::Pagination
       elsif configuration.pagination_proc
         configuration.pagination_proc.call(collection, params)
       else
-        collection.paginate(params)
+        fail StandardError, 'Failed to paginate'
       end
     end
 
