@@ -1,15 +1,16 @@
 require 'active_support/core_ext/object'
 require 'grape'
+
 require 'grape/pagination/version'
+require 'grape/pagination/configuration'
+require 'grape/pagination/extensions'
+require 'grape/pagination/helpers'
+require 'grape/validations/validations'
 
 module Grape
   module Pagination
-    autoload :Configuration, 'grape/pagination/configuration'
-    autoload :Extensions,    'grape/pagination/extensions'
-    autoload :Helpers,       'grape/pagination/helpers'
     autoload :Paginator,     'grape/pagination/paginator'
     autoload :LinkHeader,    'grape/pagination/link_header'
-    require 'grape/validations/validations'
     
     def self.configuration
       @configuration ||= Configuration.new

@@ -6,7 +6,7 @@ module Grape::Pagination
     attr_reader :page_params
 
     def initialize(url, collection, page_params)
-      @url         = url
+      @url = url
       @collection  = collection
       @page_params = page_params
     end
@@ -38,7 +38,7 @@ module Grape::Pagination
       end.compact.join(', ')
     end
 
-  private
+    private
 
     def configuration
       Grape::Pagination.configuration
@@ -55,7 +55,7 @@ module Grape::Pagination
         %(<#{uri.to_s}>; rel="#{rel}")
       end
 
-    private
+      private
 
       def uri
         @uri ||= begin
@@ -64,8 +64,6 @@ module Grape::Pagination
           uri
         end
       end
-
     end
-
   end
 end

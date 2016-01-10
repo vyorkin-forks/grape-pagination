@@ -46,6 +46,5 @@ module Grape::Pagination
     def configuration
       Grape::Pagination.configuration
     end
-
   end
 end

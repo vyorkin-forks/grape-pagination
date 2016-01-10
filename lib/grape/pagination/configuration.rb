@@ -9,10 +9,10 @@ module Grape::Pagination
 
     def initialize
       @included_links  = DEFAULT_LINKS.dup
-      @first_page_proc = lambda { |col| 1 if col.current_page > 1 }
-      @prev_page_proc  = lambda { |col| col.try(:previous_page) or col.prev_page }
-      @next_page_proc  = lambda { |col| col.next_page }
-      @last_page_proc  = lambda { |col| col.total_pages if col.current_page < col.total_pages }
+      @first_page_proc = ->(col) { 1 if col.current_page > 1 }
+      @prev_page_proc  = ->(col) { col.try(:previous_page) or col.prev_page }
+      @next_page_proc  = ->(col) { col.next_page }
+      @last_page_proc  = ->(col) { col.total_pages if col.current_page < col.total_pages }
       @pagination_proc = lambda do |col, params|
         if col.respond_to? :paginate
           col.paginate(params)
