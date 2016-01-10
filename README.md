@@ -1,7 +1,9 @@
+[![Build Status](https://travis-ci.org/vyorkin-forks/grape-paginaion.svg)](https://travis-ci.org/vyorkin-forks/grape-paginaion)
+
 # Grape Pagination
 
 Provides helpers for paginating collections in [Grape](https://github.com/intridea/grape)
-endpoints. It works with with [will\_paginate](https://github.com/mislav/will_paginate) and [Kaminari](https://github.com/amatsuda/kaminari).
+endpoints. It works with with [will\_paginate](https://github.com/mislav/will_paginate) and [Kaminari](https://github.com/amatsuda/kaminari), or something that responds to the same paginate interface.
 
 ## Installation
 
@@ -49,7 +51,7 @@ By default will\_paginate and kaminari are supported. However it is possible to 
 ```ruby
 Grape::Pagination.configure do |config|                      
   config.paginate_with do |collection, params|             
-   collection.page(params[:page]).per(params[:per_page]).padding(3)  
+    collection.page(params[:page]).per(params[:per_page]).padding(3)  
   end
 end   
 
