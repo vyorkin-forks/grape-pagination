@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/vyorkin-forks/grape-paginaion.svg)](https://travis-ci.org/vyorkin-forks/grape-paginaion)
+[![Build Status](https://travis-ci.org/vyorkin-forks/grape-pagination.svg)](https://travis-ci.org/vyorkin-forks/grape-pagination)
 
 # Grape Pagination
 
