@@ -57,6 +57,11 @@ end
 
 ```
 
+For more info on how to implement custom pagination you can take a look at:
+* https://github.com/amatsuda/kaminari/blob/90a1cd0084807ee160ecf48f8a630458a7f1cfc7/lib/kaminari/models/page_scope_methods.rb
+* https://github.com/nviennot/kaminari-nobrainer/blob/master/lib/kaminari/models/nobrainer_extension.rb
+* https://github.com/nviennot/kaminari-nobrainer/blob/master/lib/kaminari/models/nobrainer_criteria_methods.rb
+
 ## Contributing
 
 1. Fork it
