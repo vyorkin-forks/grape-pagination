@@ -1,5 +1,5 @@
+require 'active_support/core_ext/object'
 require 'grape'
-
 require 'grape/pagination/version'
 
 module Grape
